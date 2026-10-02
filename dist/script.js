@@ -72,7 +72,9 @@ if('IntersectionObserver' in window){const observer=new IntersectionObserver(ent
 
 const header=document.querySelector('.header');
 const progress=document.createElement('div');progress.className='scroll-progress';progress.setAttribute('aria-hidden','true');document.body.prepend(progress);
-const onScroll=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.transform='scaleX('+(max>0?Math.min(scrollY/max,1):0)+')';header.classList.toggle('is-scrolled',scrollY>10);};
+const whatsappFloat=document.querySelector('.whatsapp-float'),heroSection=document.querySelector('.hero');
+let floatGreeted=false;
+const onScroll=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.transform='scaleX('+(max>0?Math.min(scrollY/max,1):0)+')';header.classList.toggle('is-scrolled',scrollY>10);const showFloat=scrollY>heroSection.offsetHeight*.6;whatsappFloat.classList.toggle('is-visible',showFloat);if(showFloat&&!floatGreeted){floatGreeted=true;setTimeout(()=>whatsappFloat.classList.add('is-expanded'),350);setTimeout(()=>whatsappFloat.classList.remove('is-expanded'),4200);}};
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){

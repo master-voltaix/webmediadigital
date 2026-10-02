@@ -1,6 +1,6 @@
 // In-app browsers (TikTok, Instagram, Facebook) often refuse to open wa.me links,
 // especially in a new tab. There we open WhatsApp directly and, if that fails,
-// show a small sheet with the number to copy or call.
+// show a small sheet with the number to copy.
 const inAppBrowser = /musical_ly|Bytedance|TikTok|Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent);
 const whatsappDisplayNumber = '0155 11353496';
 
@@ -22,17 +22,13 @@ const showWhatsappHelp = () => {
     try { await navigator.clipboard.writeText('+4915511353496'); copy.textContent = 'Nummer kopiert'; }
     catch { copy.textContent = whatsappDisplayNumber; }
   });
-  const call = document.createElement('a');
-  call.className = 'wa-help-link';
-  call.href = 'tel:+4915511353496';
-  call.textContent = 'Stattdessen anrufen';
   const close = document.createElement('button');
   close.type = 'button';
   close.className = 'wa-help-close';
   close.setAttribute('aria-label', 'Schließen');
   close.textContent = '×';
   close.addEventListener('click', () => sheet.remove());
-  sheet.append(close, title, text, copy, call);
+  sheet.append(close, title, text, copy);
   document.body.append(sheet);
 };
 

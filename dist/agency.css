@@ -518,3 +518,45 @@ input:not([type=checkbox]):focus,textarea:focus,select:focus{background:#fff;bor
 @media(max-width:640px){.quiz-intro{margin-top:10px}.quiz-refs h2{padding:0 16px}}
 .quiz-refs{padding-top:34px}
 @media(max-width:640px){.quiz-refs{padding-top:30px}}
+
+/* Desktop refinements. */
+.topbar{background:#000;border-bottom:1px solid #ffffff14}
+@media(min-width:901px){
+.nav-shell{max-width:1820px;padding-right:60px;gap:36px}
+.header .brand{min-width:0;padding-left:60px;padding-right:0}
+.desktop-nav{margin-left:auto;gap:34px;font-size:15px;font-weight:500}
+.desktop-nav a{color:#c9d5e0}
+.desktop-nav a:hover,.desktop-nav a.active{color:#fff}
+.header-contact{margin-left:8px;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 8px 0 20px;border-radius:999px;background:#fff;color:#0b2236;font-size:14.5px;font-weight:500;transition:background .2s}
+.header-contact:hover{background:#e6eef5}
+.header-contact .button-arrow{width:28px;height:28px;padding:6px;animation:none}
+.hero-inner{min-height:620px;padding:84px 0 88px}
+.hero-copy{max-width:860px;padding-left:0}
+.hero-copy h1{font-size:clamp(46px,4.7vw,78px);line-height:1.08;margin-bottom:26px}
+.hero-copy>p{max-width:560px;font-size:18px;line-height:1.7}
+.hero-benefits{font-size:16px;gap:10px 30px}
+.hero-actions .button{min-height:58px;padding:16px 26px;font-size:16px}
+.hero-actions .button-purple{padding-right:14px}
+.hero-bottom>.container{padding-left:0;padding-right:0;font-size:13px}
+.hero-bottom>.container>span:first-child{font-size:12px}
+.section-heading>p,.section-heading>div>p{font-size:17px;line-height:1.7}
+.refs-track{margin:0 -14px;padding:6px 14px 30px;scroll-padding:0 14px}
+.comparison>.container{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);column-gap:clamp(40px,6vw,96px);align-items:start}
+.comparison .section-heading{grid-column:1;grid-row:1;flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:30px}
+.comparison .section-heading>p{max-width:none}
+.comparison .compare{grid-column:2;grid-row:1/3;max-width:none;margin:10px 0}
+.comparison .comparison-foot{grid-column:1;grid-row:2;flex-direction:column;align-items:flex-start;max-width:none;margin-top:0}
+.compare p{font-size:17.5px}
+.compare-row>div,.compare-row>div:first-child,.compare-row>div:last-child{padding:22px 26px}
+.process-grid h3{font-size:19px}
+.faq-list summary{font-size:17px}
+.faq-list details>p{font-size:16px;margin-right:40px}
+}
+@media(min-width:901px) and (max-width:1180px){.nav-shell{padding-right:35px;gap:22px}.header .brand{padding-left:35px}.desktop-nav{gap:22px;font-size:14px}.comparison>.container{column-gap:36px}}
+@media(min-width:901px){.section-heading p br{display:none}.section-heading>p{max-width:430px}.comparison>.container{grid-template-rows:auto 1fr}.comparison .comparison-foot{align-self:start}}
+.whatsapp-float{display:none}
+@media(max-width:900px){.whatsapp-float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:45;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 10px 24px -8px #0b2236b3,0 0 0 4px #25d36633;transition:transform .2s}
+.whatsapp-float:active{transform:scale(.94)}
+.whatsapp-float svg{width:30px;height:30px;fill:currentColor}
+.footer{padding-bottom:86px}}
+.hero .button-purple:hover,.hero .button-purple:active{background:#fff}

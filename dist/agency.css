@@ -572,3 +572,7 @@ input:not([type=checkbox]):focus,textarea:focus,select:focus{background:#fff;bor
 .wa-help p{margin:0 0 14px;font-size:14.5px;line-height:1.5;color:#55606b}
 .wa-help .button{width:100%;min-height:50px;font-size:15.5px;color:#fff}
 .wa-help-close{position:absolute;top:8px;right:10px;width:40px;height:40px;border:0;background:none;font-size:26px;line-height:1;color:#6b7782}
+.button-arrow,.quiz-next .button-arrow,.header-contact .button-arrow{width:20px;height:20px;padding:0;border-radius:0;background:transparent;color:currentColor;stroke-width:2}
+.hero-actions .button-purple,.comparison-foot .button{gap:10px}
+@media(min-width:901px){.hero-actions .button-purple{padding-right:26px}.header-contact{padding:0 20px}.comparison-foot .button{padding:12px 24px}}
+@media(max-width:640px){.button-arrow,.hero-actions .button-purple .button-arrow{width:20px;height:20px;padding:0}}

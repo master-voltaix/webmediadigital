@@ -31,9 +31,9 @@ const showWhatsappHelp = async () => {
   sheet.setAttribute('role', 'dialog');
   sheet.setAttribute('aria-label', 'WhatsApp-Kontakt');
   const title = document.createElement('strong');
-  title.textContent = copied ? 'Nummer kopiert: ' + whatsappDisplayNumber : 'Unsere WhatsApp-Nummer: ' + whatsappDisplayNumber;
+  title.textContent = copied ? 'Nummer kopiert' : 'Unsere WhatsApp-Nummer';
   const text = document.createElement('p');
-  text.textContent = 'TikTok kann WhatsApp hier nicht direkt öffnen. Öffne WhatsApp, füge die Nummer ein und schreib uns. Oder tippe oben rechts auf ⋯ und wähle „Im Browser öffnen“.';
+  text.textContent = whatsappDisplayNumber + ' – einfach in WhatsApp einfügen.';
   const copy = document.createElement('button');
   copy.type = 'button';
   copy.className = 'button button-whatsapp';

@@ -53,8 +53,13 @@ module.exports = async (req, res) => {
       }),
     });
     if (!response.ok) {
-      console.error('Resend error', response.status, await response.text());
-      return res.status(502).json({ ok: false, error: 'E-Mail konnte nicht gesendet werden' });
+      const detail = await response.text();
+      console.error('Resend error', response.status, detail);
+      // Pass on only Resend's status and error type, never its full message,
+      // so the cause can be found without exposing account details.
+      let reason = '';
+      try { reason = JSON.parse(detail).name || ''; } catch { reason = ''; }
+      return res.status(502).json({ ok: false, error: 'E-Mail konnte nicht gesendet werden', resendStatus: response.status, resendError: reason });
     }
     return res.status(200).json({ ok: true });
   } catch (error) {

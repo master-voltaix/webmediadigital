@@ -1,6 +1,7 @@
-// Where enquiries are sent. Leave empty until a form backend is connected:
-// until then the enquiry reaches us through the WhatsApp button on the thank-you screen.
-const ENDPOINT = '';
+// Enquiries go to our serverless function, which e-mails them through Resend.
+// The local preview has no such function, so there nothing is sent.
+const ENDPOINT = /^(localhost|127.0.0.1)$/.test(location.hostname) ? '' : '/api/anfrage';
+let delivered = false;
 
 const form = document.querySelector('#quiz');
 const steps = [...form.querySelectorAll('.quiz-step')];
@@ -19,7 +20,7 @@ const show = index => {
   const done = index === questionCount;
   document.body.classList.toggle('quiz-finished', done);
   dots.forEach((dot, i) => { dot.classList.toggle('is-done', i < index); dot.classList.toggle('is-current', i === index); });
-  count.textContent = done ? (ENDPOINT ? 'Gesendet' : 'Fertig') : 'Schritt ' + (index + 1) + ' von ' + questionCount;
+  count.textContent = done ? (delivered ? 'Gesendet' : 'Fertig') : 'Schritt ' + (index + 1) + ' von ' + questionCount;
   back.hidden = index === 0 || done;
   const focusTarget = steps[index].querySelector('h1, input:not([type=radio]):not([type=checkbox])');
   if (index > 0 && focusTarget) focusTarget.focus({ preventScroll: true });
@@ -67,13 +68,17 @@ form.addEventListener('submit', async event => {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(Object.fromEntries(fields)),
       });
-      if (!response.ok) throw new Error('HTTP ' + response.status);
+      delivered = response.ok;
     } catch {
-      submit.disabled = false;
-      return fail('Das hat leider nicht geklappt. Bitte versuch es noch einmal oder schreib uns auf WhatsApp.');
+      delivered = false;
     }
-    document.querySelector('#quiz-done-text').textContent = 'Deine Anfrage ist bei uns angekommen. Wenn du es eilig hast, schreib uns direkt auf WhatsApp.';
+    submit.disabled = false;
   }
+  // If the e-mail went out we say so; otherwise WhatsApp stays the way to reach us.
+  document.querySelector('#quiz-done-text').textContent = delivered
+    ? 'Deine Anfrage ist bei uns angekommen. Wir melden uns innerhalb von 24 Stunden bei dir.'
+    : 'Ein Klick fehlt noch: Schick uns deine Angaben per WhatsApp.';
+  document.body.classList.toggle('quiz-delivered', delivered);
 
   // The WhatsApp message carries only the four points the team wants to see.
   const lines = [['Name', data.get('name')], ['Betrieb', data.get('company')], ['Budget', data.get('budget')], ['Stand', data.get('status')]]

@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: process.env.RESEND_FROM || 'WebMedia Digital <onboarding@resend.dev>',
+        from: process.env.RESEND_FROM || 'WebMedia Digital <anfrage@quick-bill.de>',
         to: [process.env.ANFRAGE_TO || 'info@webmedia-digital.de'],
         reply_to: email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email[1]) ? email[1] : undefined,
         subject: 'Neue Anfrage von ' + name[1].slice(0, 80),

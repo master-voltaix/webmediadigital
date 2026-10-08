@@ -632,3 +632,4 @@ input:not([type=checkbox]):focus,textarea:focus,select:focus{background:#fff;bor
 .form-thanks p{margin:0;font-size:16px;line-height:1.6;color:#55606b}
 .quiz-delivered .quiz-nextsteps li:first-child{display:none}
 .submit-button:disabled{opacity:.6;pointer-events:none}
+.quiz-main{flex:1 1 auto}

@@ -79,7 +79,7 @@ form.addEventListener('submit', async event => {
     ? 'Deine Anfrage ist bei uns angekommen. Wir melden uns innerhalb von 24 Stunden bei dir.'
     : 'Ein Klick fehlt noch: Schick uns deine Angaben per WhatsApp.';
   document.body.classList.toggle('quiz-delivered', delivered);
-  if (delivered && window.trackMetaEvent) window.trackMetaEvent('Lead');
+  if (delivered && window.fbq) window.fbq('track', 'Lead');
 
   // The WhatsApp message carries only the four points the team wants to see.
   const lines = [['Name', data.get('name')], ['Betrieb', data.get('company')], ['Budget', data.get('budget')], ['Stand', data.get('status')]]
